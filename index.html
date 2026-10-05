@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head><script>window.livecodes = window.livecodes || {};</script><title>Untitled Project</title><meta name="title" content="Untitled Project"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="./style.css"><script src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js" async=""></script><script type="importmap">{
+  "imports": {}
+}</script></head><body><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>apex</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;outline:none}[hidden]{display:none!important}
+body{padding:2px 2px 36px;overflow-x:hidden}
+button,input,select,textarea{min-width:0;height:24px;padding:1px 3px;border:1px solid;background:none;color:inherit;font:inherit}
+button{user-select:none;cursor:pointer}textarea{min-height:24px;resize:vertical;white-space:pre-wrap;word-break:break-word}
+header,footer,aside,#tools,#box-form,#box-dash,#box-nota,#box-map,#tail,#msg{display:flex;flex-wrap:wrap;gap:2px;width:100%}
+header,#tools{position:sticky;z-index:20;background:#fff;padding-bottom:2px}header{top:0}#tools{top:26px;z-index:19}#q{flex:4 1 100px}
+#msg{justify-content:space-between;align-items:center}#msg button{padding:0 6px}
+aside{display:none}aside button{flex:1 1 calc(20% - 2px);min-width:calc(20% - 2px);text-align:left}
+#box-form>*{flex:1 1 min(100%,140px);min-width:min(100%,140px);max-width:100%}
+#box-dash>button{flex:1 1 min(100%,120px);min-width:min(100%,120px);min-height:36px;padding:2px;text-align:left;display:flex;flex-direction:column;justify-content:center}
+#list{display:flex;flex-direction:column;gap:1px;width:100%;margin-top:2px}#list>div{padding:2px 0;word-break:break-word;width:100%;cursor:pointer}
+body[data-v="grid"] #list{flex-direction:row;flex-wrap:wrap;gap:2px}body[data-v="grid"] #list>div{flex:1 1 min(100%,130px);min-width:min(100%,130px);padding:2px;display:flex;flex-direction:column}
+body[data-v="grid"] #list img{width:100%;height:75px;object-fit:cover;display:block;margin-bottom:2px}
+#box-form,#box-dash,#box-nota,#box-map{display:none}#box-nota,#box-map{flex-direction:column;align-items:flex-start}
+#tape{width:100%;max-width:280px;white-space:pre-wrap;word-break:break-word;font-family:monospace}
+footer{position:fixed;bottom:0;left:0;z-index:30;padding:2px;background:#fff}footer button{flex:1 1 auto;min-width:calc(20% - 2px);height:24px}
+#tail button{flex:1 1 100%;height:24px}
+body[data-m="menu"] aside{display:flex!important}body[data-m="menu"] :is(main,footer,#msg){display:none!important}
+body[data-m="menu"] header>:not([data-a="menu"],[data-a="clr"],#q){display:none!important}
+body:not([data-m="list"]) header [data-a="add"],body[data-noadd="1"] header [data-a="add"]{display:none!important}
+body[data-m="form"] :is(header,#tools,#list,#tail,aside){display:none!important}body[data-m="form"] #box-form{display:flex!important}
+body[data-m="dash"] :is(#tools,#list,#tail,aside){display:none!important}body[data-m="dash"] #box-dash{display:flex!important}
+body[data-m="nota"] :is(header,#tools,#list,#tail,aside){display:none!important}body[data-m="nota"] #box-nota{display:flex!important}
+body[data-m="map"] :is(header [data-a="add"],#tools,#list,#tail,aside){display:none!important}body[data-m="map"] #box-map{display:flex!important}
+.r{display:flex;flex-wrap:wrap;gap:2px;width:100%;align-items:center}.g{flex:1 1 auto}.inf{flex:1 1 100%}.w24{flex:0 0 24px}.w28{flex:0 0 28px}.w36{flex:0 0 36px}.w44{flex:0 0 44px}.wa{flex:0 0 auto}
+.cms-t{padding-bottom:2px}.cms-c{white-space:pre-wrap;word-break:break-word;flex:1 1 auto;margin-top:4px}.cms-d{flex:1 1 100%;display:flex;flex-direction:column;gap:4px;width:100%}
+.cms-box{flex:1 1 100%!important;min-width:100%!important;min-height:calc(100vh - 100px);height:calc(100vh - 100px);width:100%}
+.p-long{min-height:120px}.img-prev{max-width:100%;max-height:220px;object-fit:contain;margin:4px 0}.thumb{flex:0 0 24px;width:24px;height:24px;object-fit:cover;cursor:pointer}
+.m-title{flex:1 1 auto;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.m-cv{width:100%;height:320px;display:block;touch-action:none}
+.z-mod{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;display:flex;flex-direction:column;overflow:hidden;background:#fff}
+.z-bar{display:flex;gap:2px;padding:2px}.z-stg{flex:1 1 auto;width:100%;overflow:auto;display:flex;align-items:center;justify-content:center;touch-action:pinch-zoom}.z-img{max-width:100%;max-height:100%;object-fit:contain}
+@media print{body{padding:0!important}header,footer,aside,#tools,#msg,#tail,#box-dash,#list,#box-map{display:none!important}body[data-m="nota"] #box-nota{display:block!important}#tape{width:58mm!important}}
+</style>
+<header id="h"><button data-a="menu">menu</button><input id="q" data-a="q" placeholder="q" autocomplete="off" spellcheck="false"><button data-a="clr">clr</button><button data-a="scan">scan</button><button data-a="add">add</button></header>
+<div id="msg" hidden=""></div>
+<aside id="sb"><button data-a="v-dash">dashboard</button><button data-a="v-map-kontak">map kontak</button><button data-a="v-map-jual">map penjualan</button><button data-a="v-toko">toko</button><button data-a="v-conn">koneksi</button><button data-a="push">push (json)</button><button data-a="pull">pull (json)</button><button data-a="backup">backup html</button><button data-a="logout">logout</button></aside>
+<main id="main"><div id="tools"><select id="sh-sel" data-a="sh-sel"></select><select id="st-sel" data-a="st-sel"></select><button data-a="dir" class="w24">^</button><button data-a="grid" class="w24">#</button><select id="act-sel" data-a="act-sel"><option value="" disabled="" selected="">act</option><option value="edit">edit</option><option value="bulksheet">bulksheet</option><option value="schema">schema</option><option value="clear">clear</option><option value="imp">imp</option><option value="tsv">tsv</option></select></div>
+<div id="box-form"></div><div id="box-dash"></div><div id="box-nota"><pre id="tape"></pre></div><div id="box-map"></div><div id="list"></div><div id="tail"></div></main>
+<footer id="ft"></footer><input id="f" type="file" data-a="f" accept=".tsv" hidden=""><input id="f-json" type="file" accept=".json" hidden=""><input id="f-cam" type="file" accept="image/*" capture="environment" hidden=""><input id="f-img" type="file" accept="image/*" hidden="">
+<script>'use strict';
+/*SEED*/ const HARD = {
+  store: { name: 'TB. AIZA CIRUJI', sub: 'Sembako Percetakan Material', phone: '08787 117 6447 / 0838 7113 5994', bank: 'BRI: 0166 0113 7004 507 (Leni)', footer: 'TERIMA KASIH!' },
+  shs: ['penjualan','produk_jual','produk','pembelian','produk_beli','kas','kontak','cicil','ecer','users','roles','cms','absen'],
+  cols: { penjualan: ['idjual','user','date','bayar','catatan','diskon','kontak','lokasi','foto','status'], produk_jual: ['idprodukjual','idpenjualan','idproduk','namaproduk','hargabeli','hargajual','qty','diskon','catatan'], produk: ['idproduk','subkategori','kategori','namaproduk','hargabeli','hargajual','stok','foto_url'], pembelian: ['idbeli','user','date','bayar','catatan','kontak','lokasi','foto','status'], produk_beli: ['idprodukbeli','idpembelian','idproduk','namaproduk','hargabeli','hargajual','qty'], kas: ['idkas','user','date','kategori','masuk','keluar','uraian','lokasi','foto'], kontak: ['idkontak','user','kategori','nama','alamat','hp','lokasi','foto'], cicil: ['idcicil','idjual','user','date','jumlah','catatan','kontak'], ecer: ['idecer','date','user','idproduk','namaproduk','hargabeli','hargajual','qty','diskon','catatan'], users: ['user','password','role'], roles: ['role','deskripsi','akses'], cms: ['idcms','date','user','judul','kategori','konten','foto','status'], absen: ['idabsen','user','date','tipe','jam','lokasi','foto','catatan'] },
+  vis: { penjualan: ['idjual','date','bayar','kontak','status'], produk_jual: ['idpenjualan','namaproduk','qty','hargajual'], produk: ['subkategori','kategori','namaproduk','hargajual','stok'], pembelian: ['idbeli','date','bayar','kontak','status'], produk_beli: ['idpembelian','namaproduk','qty','hargabeli'], kas: ['date','kategori','masuk','keluar','uraian'], kontak: ['nama','kategori','hp','lokasi'], cicil: ['idjual','date','jumlah','kontak'], ecer: ['namaproduk','qty','hargajual'], users: ['user','role'], roles: ['role','deskripsi'], cms: ['date','judul','kategori','status','konten'], absen: ['user','date','tipe','jam'] },
+  db: { penjualan: [['aaa18006446','admin','2026-10-03','100000','diambil ke toko','4000','aan h. udin picung','-6.2088,106.8456','','piutang']], produk_jual: [['PJL001','aaa18006446','P001','lakban gipsum 1','10000','15000','3','1000',''],['PJL002','aaa18006446','P002','led cahaya 12','25000','35000','6','0','']], produk: [['P001','Material','Gipsum','lakban gipsum 1','10000','15000','50',''],['P002','Listrik','Lampu','led cahaya 12','25000','35000','40',''],['P003','Material','Semen','semen instan 40kg','45000','55000','20','']], pembelian: [], produk_beli: [], kas: [['KAS01','admin','2026-10-03','Operasional','0','25000','beli bensin operasional','-6.2088,106.8456','']], kontak: [['K001','admin','Pelanggan','aan h. udin picung','picung','+6285724511555','-6.2088,106.8456','']], cicil: [], ecer: [], users: [['admin','admin','admin']], roles: [['admin','super user','all'],['user','staff kasir','trx,kas']], cms: [['C001','2026-10-03','admin','Info Toko','Umum','Buka setiap hari 07:00 - 17:00 WIB','','publish']], absen: [['A001','admin','2026-10-03','masuk','07:00','-6.2088,106.8456','','ontime']] }
+}; /*ENDSEED*/
+const STORE_KEY = 'apex', S = { u: '', cur: 'penjualan', v: 'dash', idx: null, page: 1, sort: 0, dir: 1, grid: false, conf: null, prefill: null, parent: null, receiptRaw: '', prodIdx: null, readyOnly: false, curMap: 'kontak', mapLimit: 20, mapLoc: '', myLoc: null, mapZoom: 1, mapPan: { x: 0, y: 0 }, df: { u: '', from: '', to: '', kat: '' }, sid: '', appurl: '', d1url: '', store: { ...HARD.store }, shs: [...HARD.shs], cols: JSON.parse(JSON.stringify(HARD.cols)), vis: JSON.parse(JSON.stringify(HARD.vis)), fvis: {}, db: JSON.parse(JSON.stringify(HARD.db)) };
+const $ = id => document.getElementById(id), dom = { q: $('q'), msg: $('msg'), sb: $('sb'), f: $('f'), fJson: $('f-json'), fCam: $('f-cam'), fImg: $('f-img'), sh: $('sh-sel'), st: $('st-sel'), act: $('act-sel'), fb: $('box-form'), db: $('box-dash'), ls: $('list'), mb: $('box-map'), tl: $('tail'), ft: $('ft'), tape: $('tape') };
+const S2 = s => String(s ?? '').trim().toLowerCase(), N = n => parseFloat(n) || 0, C = (sh, col) => (S.cols[sh] || []).indexOf(col);
+const cols = () => S.cols[S.cur] || ['id','col1'], vis = () => (S.vis[S.cur] || cols()).filter(c => cols().includes(c)), fvis = () => (S.fvis?.[S.cur]?.length ? S.fvis[S.cur] : cols()).filter(c => cols().includes(c));
+const isTrx = () => S.cur === 'penjualan' || S.cur === 'pembelian', childOf = sh => sh === 'penjualan' ? 'produk_jual' : sh === 'pembelian' ? 'produk_beli' : null, parentOf = sh => sh === 'produk_jual' ? 'penjualan' : sh === 'produk_beli' ? 'pembelian' : null, fkCol = sh => sh === 'produk_jual' ? 'idpenjualan' : sh === 'produk_beli' ? 'idpembelian' : null;
+const NO_ADD = ['penjualan','pembelian','produk_jual','produk_beli','cicil','ecer'], addFooter = (a, txt) => dom.ft.insertAdjacentHTML('beforeend', `<button data-a="${a}">${txt}</button>`);
+const genId = () => { const d = new Date(); return String(d.getHours()).padStart(2, '0') + String(d.getMinutes()).padStart(2, '0') + Math.random().toString(36).slice(2, 5).padEnd(3, '0'); };
+const fmtNum = n => N(n).toLocaleString('id-ID'), today = () => new Date().toISOString().slice(0, 10);
+const rawDistKm = (la1, lo1, la2, lo2) => { const r = Math.PI / 180, a = Math.sin((la2 - la1) * r / 2) ** 2 + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin((lo2 - lo1) * r / 2) ** 2; return 12742 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); };
+const distKm = (la1, lo1, la2, lo2) => { const d = rawDistKm(la1, lo1, la2, lo2); return d < 1 ? Math.round(d * 1000) + 'm' : d.toFixed(1) + 'km'; };
+const adjustStock = (id, delta) => { if (!id || !delta) return; const stI = C('produk','stok'), r = (S.db.produk || []).find(x => S2(x[C('produk','idproduk')] ?? x[0]) === S2(id)); if (r && stI !== -1) r[stI] = String(N(r[stI]) + delta); };
+const syncStockDelta = (sh, oldR, newR) => { if (!['produk_jual','produk_beli','ecer'].includes(sh)) return; const idI = C(sh, 'idproduk'), qI = C(sh, 'qty'), m = sh === 'produk_beli' ? 1 : -1; if (oldR && idI !== -1 && qI !== -1) adjustStock(oldR[idI], -N(oldR[qI]) * m); if (newR && idI !== -1 && qI !== -1) adjustStock(newR[idI], N(newR[qI]) * m); };
+const openImgZoom = src => {
+  let m = $('img-zoom-modal');
+  if (!m) {
+    document.body.insertAdjacentHTML('beforeend', '<div id="img-zoom-modal" class="z-mod"><div class="z-bar"><button id="btn-zi" class="w36">+</button><button id="btn-zo" class="w36">-</button><button id="btn-zr" class="w44">100%</button><div class="g"></div><button id="btn-zc" class="w36">x</button></div><div class="z-stg"><img id="img-zt" class="z-img"></div></div>');
+    m = $('img-zoom-modal'); let s = 1; const t = m.querySelector('#img-zt');
+    m.querySelector('#btn-zi').onclick = () => { s = Math.min(6, s + 0.35); t.style.transform = `scale(${s})`; };
+    m.querySelector('#btn-zo').onclick = () => { s = Math.max(0.5, s - 0.35); t.style.transform = `scale(${s})`; };
+    m.querySelector('#btn-zr').onclick = () => { s = 1; t.style.transform = 'scale(1)'; };
+    m.querySelector('#btn-zc').onclick = () => { m.hidden = true; };
+    t.onclick = () => { s = s === 1 ? 2.5 : 1; t.style.transform = `scale(${s})`; };
+  }
+  const img = m.querySelector('#img-zt'); img.src = src; img.style.transform = 'scale(1)'; m.hidden = false;
+};
+const updateFormThumb = inp => {
+  if (!inp) return; const col = inp.dataset.col || '', val = inp.value.trim(); let th = dom.fb.querySelector(`img[data-thumb-col="${col}"]`);
+  if (val && (/foto/i.test(col) || /^data:image\//i.test(val))) {
+    if (!th) { th = document.createElement('img'); th.dataset.thumbCol = col; th.className = 'thumb'; th.title = 'zoom'; th.onerror = () => th.remove(); th.onclick = () => openImgZoom(th.src); inp.after(th); }
+    th.src = val;
+  } else if (th) th.remove();
+};
+const msg = t => { dom.msg.innerHTML = t ? `${t} <button data-a="closemsg">x</button>` : ''; dom.msg.hidden = !t; };
+const dl = (str, name, mime) => { const u = URL.createObjectURL(new Blob([str], { type: mime })), a = document.createElement('a'); a.href = u; a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { a.remove(); URL.revokeObjectURL(u); }, 500); };
+const calcItems = (pType, pId) => {
+  const ch = childOf(pType); if (!ch) return { raw: 0, disc: 0, cogs: 0, pot: 0, items: [] };
+  const fkI = C(ch, fkCol(ch)), nmI = C(ch, 'namaproduk'), qI = C(ch, 'qty'), prI = C(ch, pType === 'penjualan' ? 'hargajual' : 'hargabeli'), dcI = C(ch, 'diskon'), hbI = C(ch, 'hargabeli'), hjI = C(ch, 'hargajual'), idpI = C(ch, 'idproduk'), tid = S2(pId);
+  let raw = 0, disc = 0, cogs = 0, pot = 0; const items = [];
+  for (const r of (S.db[ch] || [])) {
+    if (fkI === -1 || S2(r[fkI]) !== tid) continue;
+    const name = nmI !== -1 ? (r[nmI] || 'item') : 'item', idproduk = idpI !== -1 ? r[idpI] : '', qty = qI !== -1 ? N(r[qI]) : 0, price = prI !== -1 ? N(r[prI]) : 0, buy = hbI !== -1 ? N(r[hbI]) : 0, sell = hjI !== -1 ? N(r[hjI]) : 0, dVal = dcI !== -1 ? N(r[dcI]) : 0;
+    const dPerUnit = dVal > 0 ? (dVal < price ? dVal : (qty > 0 ? dVal / qty : 0)) : 0, dLine = dVal > 0 ? (dVal < price ? dVal * qty : dVal) : 0, eff = Math.max(0, price - dPerUnit), lineTot = (qty * price) - dLine;
+    raw += (qty * price); disc += dLine; cogs += (qty * buy); pot += (qty * sell); items.push({ name, idproduk, qty, price, buy, sell, dPerUnit, eff, lineTot });
+  }
+  return { raw, disc, cogs, pot, items };
+};
+const formatNota = idjual => {
+  const row = (S.db.penjualan || []).find(r => S2(r[0]) === S2(idjual)); if (!row) return 'nota kosong';
+  const valOf = k => row[C('penjualan', k)] || '', dateStr = valOf('date') || today(), discNota = N(valOf('diskon')), directPay = N(valOf('bayar')), kontak = valOf('kontak'), catatan = valOf('catatan'), user = valOf('user') || S.u || 'admin';
+  const cIdI = C('cicil', 'idjual'), cJmlI = C('cicil', 'jumlah'), cicilSum = (S.db.cicil || []).reduce((acc, c) => acc + (cIdI !== -1 && S2(c[cIdI]) === S2(idjual) && cJmlI !== -1 ? N(c[cJmlI]) : 0), 0);
+  const totalBayar = directPay + cicilSum; let hp = '';
+  if (kontak) { const m = (S.db.kontak || []).find(k => S2(k[C('kontak','nama')] ?? k[3]) === S2(kontak) || S2(k[C('kontak','idkontak')]) === S2(kontak)); if (m) hp = m[C('kontak','hp')] || ''; }
+  const { raw, disc: discItem, items } = calcItems('penjualan', idjual), grandTotal = Math.max(0, raw - discItem - discNota), diff = totalBayar - grandTotal, isLunas = diff >= 0, sisa = Math.abs(diff), W = 32;
+  const center = s => (s = String(s || '').trim()).length >= W ? s.slice(0, W) : ' '.repeat(Math.floor((W - s.length) / 2)) + s, lr = (l, r) => (l = String(l || '')) + ' '.repeat(Math.max(1, W - l.length - String(r = String(r || '')).length)) + r;
+  const lines = [center(S.store.name), S.store.sub && center(S.store.sub), S.store.phone && center(S.store.phone), S.store.bank && center(S.store.bank), '='.repeat(W), lr(`${dateStr} ${idjual}`, user), '-'.repeat(W)].filter(Boolean);
+  if (!items.length) lines.push('(kosong)');
+  else items.forEach(it => { lines.push(it.name); if (it.dPerUnit > 0) lines.push(`${fmtNum(it.price)} -disc ${fmtNum(it.dPerUnit)}`); lines.push(lr(`${it.qty}x ${fmtNum(it.eff)}`, fmtNum(it.lineTot))); });
+  lines.push('-'.repeat(W), lr('Subtotal', fmtNum(raw))); if (discItem > 0) lines.push(lr('Diskon Item', '-' + fmtNum(discItem))); if (discNota > 0) lines.push(lr('Diskon', '-' + fmtNum(discNota)));
+  lines.push(lr('Total', fmtNum(grandTotal)), lr('Bayar', fmtNum(totalBayar)), lr(isLunas ? 'Kembali' : 'Kurang', fmtNum(sisa)), '-'.repeat(W));
+  if (S.store.footer) lines.push(center(S.store.footer));
+  if (kontak) lines.push(' ' + kontak); if (hp) lines.push(' ' + hp); if (catatan) lines.push(' ' + catatan); if (!isLunas) lines.push(lr('Total Piutang', '-' + fmtNum(sisa)));
+  return lines.join('\n');
+};
+const syncTrx = (pType, pId) => {
+  if (!pType || !pId) return; const r = (S.db[pType] || []).find(x => S2(x[0]) === S2(pId)); if (!r) return;
+  const sI = C(pType, 'status'), bI = C(pType, 'bayar'), dI = C(pType, 'diskon'); if (sI === -1 || bI === -1) return;
+  const net = Math.max(0, calcItems(pType, pId).raw - calcItems(pType, pId).disc - (dI !== -1 ? N(r[dI]) : 0));
+  let cicil = 0; if (pType === 'penjualan') { const ci = C('cicil','idjual'), cj = C('cicil','jumlah'); (S.db.cicil || []).forEach(c => { if (ci !== -1 && S2(c[ci]) === S2(pId)) cicil += N(c[cj]); }); }
+  const totPaid = N(r[bI]) + cicil; if (r[sI] !== 'revisi') r[sI] = net <= 0 || totPaid <= 0 ? 'draft' : totPaid >= net ? 'lunas' : 'piutang';
+  persist();
+};
+const getUserDraft = pType => { const uI = C(pType, 'user'), sI = C(pType, 'status'), u = S2(S.u || 'admin'), row = (S.db[pType] || []).find(r => (!u || S2(r[uI]) === u) && ['draft','revisi'].includes(S2(r[sI]))); return row ? { type: pType, id: row[0], row, status: sI !== -1 ? row[sI] : 'draft' } : null; };
+const getOpenTrx = pType => { if (!pType) return null; if (S.parent?.type === pType) { const r = (S.db[pType] || []).find(x => S2(x[0]) === S2(S.parent.id)), st = S2(r?.[C(pType,'status')]); if (r && ['draft','revisi'].includes(st)) return { type: pType, id: r[0], row: r, status: st }; } return getUserDraft(pType); };
+const hasDraftItems = pType => { const ch = childOf(pType), op = getOpenTrx(pType); if (!ch || !op) return false; const fkI = C(ch, fkCol(ch)); return fkI !== -1 && (S.db[ch] || []).some(r => S2(r[fkI]) === S2(op.id)); };
+const queryRows = () => {
+  const rows = S.db[S.cur] || [], q = S2(dom.q.value).split(/\s+/).filter(Boolean), pType = parentOf(S.cur), fkI = pType ? cols().indexOf(fkCol(S.cur)) : -1, op = pType ? getOpenTrx(pType) : null, stI = S.cur === 'produk' ? C('produk', 'stok') : -1, res = [];
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i] || [];
+    if (S.cur === 'produk' && S.readyOnly && stI !== -1 && N(r[stI]) <= 0) continue;
+    if (pType && fkI !== -1 && op && S2(r[fkI]) !== S2(op.id)) continue;
+    if (!q.length || q.every(w => r.join(' ').toLowerCase().includes(w))) res.push(i);
+  }
+  if (S.sort === 'near' && S.myLoc) {
+    const lkI = cols().indexOf('lokasi'), alI = cols().indexOf('alamat'), getC = r => { const m = ((lkI !== -1 ? r[lkI] : '') || (alI !== -1 ? r[alI] : '')).trim().match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/); return m ? { lat: N(m[1]), lng: N(m[3]) } : null; };
+    res.sort((a, b) => { const ca = getC(rows[a]), cb = getC(rows[b]); return !ca && !cb ? 0 : !ca ? 1 : !cb ? -1 : rawDistKm(S.myLoc.lat, S.myLoc.lng, ca.lat, ca.lng) - rawDistKm(S.myLoc.lat, S.myLoc.lng, cb.lat, cb.lng); });
+  } else if (S.sort > 0 && S.sort <= cols().length) {
+    const ci = S.sort - 1; res.sort((a, b) => String(rows[a]?.[ci] ?? '').localeCompare(String(rows[b]?.[ci] ?? ''), undefined, { numeric: true }) * S.dir);
+  } else if (S.dir === -1) res.reverse();
+  return res;
+};
+const renderChrome = () => {
+  const k = S.shs.join(','); if (dom.sh.dataset.shs !== k) { dom.sh.innerHTML = S.shs.map(s => `<option value="${s}">${s}</option>`).join(''); dom.sh.dataset.shs = k; }
+  dom.sh.value = S.cur; const c = cols(), hasLoc = c.includes('lokasi') || c.includes('alamat');
+  if (dom.st.dataset.cur !== S.cur || dom.st.children.length !== c.length + 1 + (hasLoc ? 1 : 0)) {
+    dom.st.innerHTML = '<option value="0">srt</option>' + (hasLoc ? '<option value="near">terdekat</option>' : '') + c.map((col, i) => `<option value="${i+1}">${col}</option>`).join('');
+    dom.st.dataset.cur = S.cur;
+  }
+  dom.st.value = String(S.sort);
+};
+const renderNavFooters = () => {
+  if (S.v !== 'dash') addFooter('v-dash', 'dashboard'); if (S.cur !== 'kas') addFooter('v-kas', 'kas'); if (S.cur !== 'produk') addFooter('v-shop', 'produk');
+  if (S.cur !== 'produk_jual' && hasDraftItems('penjualan')) addFooter('v-jual', 'jual'); if (S.cur !== 'produk_beli' && hasDraftItems('pembelian')) addFooter('v-beli', 'beli');
+};
+const renderDash = () => {
+  const userSet = new Set(['admin']), katSet = new Set();
+  (S.db.users || []).forEach(u => u[0] && userSet.add(u[0]));
+  ['penjualan','pembelian','kas','cicil','ecer','roles','cms','absen'].forEach(sh => { const ui = C(sh,'user'); if (ui !== -1) (S.db[sh] || []).forEach(r => r[ui] && userSet.add(r[ui])); });
+  (S.db.produk || []).forEach(p => { if (p[1]) katSet.add(p[1]); if (p[2]) katSet.add(p[2]); });
+  const kki = C('kas','kategori'), kti = C('kontak','kategori'); if (kki !== -1) (S.db.kas || []).forEach(k => k[kki] && katSet.add(k[kki])); if (kti !== -1) (S.db.kontak || []).forEach(k => k[kti] && katSet.add(k[kti]));
+  dom.db.insertAdjacentHTML('beforeend', `<div class="r"><input placeholder="user" data-df="u" value="${S.df.u}" list="dl-du"><datalist id="dl-du">${Array.from(userSet).map(u => `<option value="${u}">`).join('')}</datalist><input type="date" data-df="from" value="${S.df.from}"><input type="date" data-df="to" value="${S.df.to}"><input placeholder="kategori" data-df="kat" value="${S.df.kat}" list="dl-dk"><datalist id="dl-dk">${Array.from(katSet).map(k => `<option value="${k}">`).join('')}</datalist><button data-a="df-today" class="wa">hari ini</button><button data-a="df-clear" class="wa">clear</button></div>`);
+  const prodKat = {}, pSubI = C('produk','subkategori'), pKatI = C('produk','kategori');
+  (S.db.produk || []).forEach(p => { if (p[0]) prodKat[S2(p[0])] = `${pSubI !== -1 ? p[pSubI] : ''} ${pKatI !== -1 ? p[pKatI] : ''}`.toLowerCase(); });
+  const qW = S2(dom.q.value).split(/\s+/).filter(Boolean);
+  const pass = (u, d, kt) => (!S.df.u || S2(u).includes(S2(S.df.u))) && (!S.df.from || String(d || '') >= S.df.from) && (!S.df.to || String(d || '') <= S.df.to) && (!S.df.kat || S2(kt).includes(S2(S.df.kat))) && (!qW.length || qW.every(w => `${u} ${d} ${kt}`.toLowerCase().includes(w)));
+  let mskA = 0, klrA = 0, mskF = 0, klrF = 0;
+  (S.db.kas || []).forEach(r => { const m = N(r[C('kas','masuk')]), k = N(r[C('kas','keluar')]); mskA += m; klrA += k; if (pass(r[C('kas','user')], r[C('kas','date')], (r[C('kas','kategori')]||'') + ' ' + (r[C('kas','uraian')]||''))) { mskF += m; klrF += k; } });
+  const cMap = {}, cFMap = {}, cIdI = C('cicil','idjual'), cJmlI = C('cicil','jumlah');
+  (S.db.cicil || []).forEach(c => { const id = S2(c[cIdI]), j = N(c[cJmlI]); cMap[id] = (cMap[id] || 0) + j; if (pass(c[C('cicil','user')], c[C('cicil','date')], '')) cFMap[id] = (cFMap[id] || 0) + j; });
+  let totJA = 0, totJF = 0, totPF = 0, totPiA = 0, totPiF = 0;
+  (S.db.penjualan || []).forEach(r => {
+    const pid = r[0], { raw, disc, cogs, items } = calcItems('penjualan', pid), net = Math.max(0, raw - disc - N(r[C('penjualan','diskon')])), dp = N(r[C('penjualan','bayar')]), paA = dp + (cMap[S2(pid)] || 0), paF = dp + (cFMap[S2(pid)] || 0);
+    totJA += net; if (paA < net) totPiA += (net - paA); const kIt = items.map(it => prodKat[S2(it.idproduk)] || '').join(' ');
+    if (pass(r[C('penjualan','user')], r[C('penjualan','date')], `${r[C('penjualan','kontak')]||''} ${r[C('penjualan','catatan')]||''} ${kIt}`)) { totJF += net; totPF += (net - cogs); if (paF < net) totPiF += (net - paF); }
+  });
+  let ecerQF = 0;
+  (S.db.ecer || []).forEach(r => {
+    const q = N(r[C('ecer','qty')]), hb = N(r[C('ecer','hargabeli')]), hj = N(r[C('ecer','hargajual')]), d = N(r[C('ecer','diskon')]), net = Math.max(0, (q * hj) - d);
+    totJA += net; if (pass(r[C('ecer','user')], r[C('ecer','date')], `${r[C('ecer','catatan')]||''} ${prodKat[S2(r[C('ecer','idproduk')])]||''}`)) { totJF += net; totPF += (net - (q * hb)); ecerQF += q; }
+  });
+  let totBF = 0;
+  (S.db.pembelian || []).forEach(r => { const { raw, disc, items } = calcItems('pembelian', r[0]), kIt = items.map(it => prodKat[S2(it.idproduk)] || '').join(' '); if (pass(r[C('pembelian','user')], r[C('pembelian','date')], `${r[C('pembelian','kontak')]||''} ${r[C('pembelian','catatan')]||''} ${kIt}`)) totBF += Math.max(0, raw - disc); });
+  const stMasuk = (S.db.produk_beli || []).reduce((acc, r) => acc + N(r[C('produk_beli','qty')]), 0), stKeluar = (S.db.produk_jual || []).reduce((acc, r) => acc + N(r[C('produk_jual','qty')]), 0) + ecerQF;
+  let sisaStok = 0, readyC = 0, estM = 0, estJ = 0;
+  (S.db.produk || []).forEach(r => { const s = N(r[C('produk','stok')]), hb = N(r[C('produk','hargabeli')]), hj = N(r[C('produk','hargajual')]); if (pass('', '', `${r[pSubI]||''} ${r[pKatI]||''}`)) { sisaStok += s; if (s > 0) { readyC++; estM += (s * hb); estJ += (s * hj); } } });
+  [
+    { l: 'saldo total', v: fmtNum(mskA + totJA - klrA - totPiA), s: 'kas' }, { l: 'saldo filter', v: fmtNum(mskF + totJF - klrF - totPiF), s: 'penjualan' }, { l: 'user', v: S.u || 'admin', s: 'users' }, { l: 'profit', v: fmtNum(totPF), s: 'penjualan' },
+    { l: 'kas masuk', v: fmtNum(mskF), s: 'kas' }, { l: 'kas keluar', v: fmtNum(klrF), s: 'kas' }, { l: 'total penjualan', v: fmtNum(totJF), s: 'penjualan' }, { l: 'total pembelian', v: fmtNum(totBF), s: 'pembelian' },
+    { l: 'total piutang', v: fmtNum(totPiF), s: 'penjualan' }, { l: 'stok masuk', v: fmtNum(stMasuk), s: 'produk_beli' }, { l: 'stok keluar', v: fmtNum(stKeluar), s: 'produk_jual' }, { l: 'sisa stok', v: fmtNum(sisaStok), s: 'produk' },
+    { l: 'produk ready stok', v: readyC + ' item', s: 'produk', slice: 'ready' }, { l: 'estimasi modal ready', v: fmtNum(estM), s: 'produk', slice: 'ready' }, { l: 'estimasi jual ready', v: fmtNum(estJ), s: 'produk', slice: 'ready' }, { l: 'estimasi profit ready', v: fmtNum(estJ - estM), s: 'produk', slice: 'ready' }
+  ].forEach(cd => dom.db.insertAdjacentHTML('beforeend', `<button data-a="nav" data-s="${cd.s}" ${cd.slice ? `data-slice="${cd.slice}"` : ''}><span>${cd.l}</span><b>${cd.v}</b></button>`));
+  renderNavFooters();
+};
+const bindDL = (id, opts) => { if (dom.fb.querySelector('#' + id)) return; dom.fb.insertAdjacentHTML('beforeend', `<datalist id="${id}">${opts.map(o => typeof o === 'string' ? `<option value="${o}">` : `<option value="${o.v}">${o.l || ''}</option>`).join('')}</datalist>`); };
+const renderForm = () => {
+  if (!S.u) { dom.fb.innerHTML = '<input placeholder="user" autocomplete="off" data-f="user"><input type="password" placeholder="password" data-f="pass">'; addFooter('login', 'login'); addFooter('reg', 'register'); addFooter('bypass', 'bypass'); return; }
+  if (S.cur === 'cms' && S.v === 'cms_detail') {
+    const r = S.db.cms?.[S.idx] || [], g = k => r[cols().indexOf(k)] || '', d = document.createElement('div'); d.className = 'cms-d';
+    d.innerHTML = `<b class="cms-t">${g('judul')||'(tanpa judul)'}</b><div>${g('date')} ${g('user')?'| '+g('user'):''} ${g('kategori')?'| '+g('kategori'):''} ${g('status')?'| ['+g('status')+']':''}</div><div class="cms-c">${g('konten')}</div>`;
+    if (g('foto')) { const im = document.createElement('img'); im.src = g('foto'); im.className = 'img-prev'; im.onclick = () => openImgZoom(im.src); d.insertBefore(im, d.lastElementChild); }
+    dom.fb.appendChild(d); addFooter('edit-cms', 'edit'); addFooter('cancel', 'cancel'); return;
+  }
+  if (S.v === 'bulksheet') { dom.fb.innerHTML = `<textarea class="p-long" placeholder="sheet:kolom,kolom">${S.shs.map(s => `${s}:${(S.cols[s]||[]).join(',')}`).join('\n')}</textarea>`; addFooter('save-bulksheet', 'save'); addFooter('cancel', 'cancel'); return; }
+  if (S.v === 'toko') { dom.fb.innerHTML = `<input placeholder="name" value="${S.store.name}" data-cfg="name"><input placeholder="sub" value="${S.store.sub}" data-cfg="sub"><input placeholder="phone" value="${S.store.phone}" data-cfg="phone"><input placeholder="bank" value="${S.store.bank}" data-cfg="bank"><textarea placeholder="footer" data-cfg="footer">${S.store.footer}</textarea>`; addFooter('save-store', 'save'); addFooter('cancel', 'cancel'); return; }
+  if (S.v === 'conn') { dom.fb.innerHTML = `<textarea placeholder="sid">${S.sid}</textarea><textarea placeholder="appurl">${S.appurl}</textarea><textarea placeholder="d1url">${S.d1url}</textarea>`; addFooter('save-conn', 'save'); addFooter('cancel', 'cancel'); return; }
+  if (S.v === 'schema') { dom.fb.innerHTML = `<input placeholder="cols" value="${cols().join(',')}" data-f="cols"><input placeholder="vis (list)" value="${vis().join(',')}" data-f="vis"><input placeholder="form" value="${fvis().join(',')}" data-f="form">`; addFooter('save-schema', 'save'); addFooter('cancel', 'cancel'); return; }
+  const c = cols(), r = (S.idx !== null && S.idx >= 0) ? (S.db[S.cur][S.idx] || []) : [], isDraft = isTrx() && S2(r[c.indexOf('status')]) === 'draft';
+  let fCols = fvis(); if (S.cur === 'cms' && fCols.includes('konten')) fCols = fCols.filter(k => k !== 'konten').concat('konten');
+  fCols.forEach(col => {
+    const i = c.indexOf(col); let val = (S.idx === -1 && i === 0) ? genId() : (r[i] ?? '');
+    if (S.idx === -1 && S.prefill?.[col] != null) val = S.prefill[col];
+    else if (S.idx === -1 && !val && /date|tanggal/i.test(col)) val = today();
+    else if (S.idx === -1 && !val && col === 'user') val = S.u || 'admin';
+    else if (S.idx === -1 && !val && S.cur === 'cms' && col === 'status') val = 'publish';
+    const inp = document.createElement(/catatan|alamat|uraian|konten/i.test(col) ? 'textarea' : 'input');
+    inp.placeholder = col; inp.value = val; inp.dataset.col = col; if (S.cur === 'cms' && col === 'konten') inp.className = 'cms-box';
+    if (col === 'idproduk' || col === 'namaproduk') { inp.setAttribute('list', 'dl-fp'); bindDL('dl-fp', (S.db.produk || []).flatMap(p => [{ v: p[0], l: p[3] || p[0] }, { v: p[3] || p[0], l: p[0] }])); }
+    else if (col === 'status' && S.cur === 'cms') { inp.setAttribute('list', 'dl-fst'); bindDL('dl-fst', ['publish','draft']); }
+    else if (col === 'user') { inp.setAttribute('list', 'dl-fu'); bindDL('dl-fu', (S.db.users || []).map(u => u[0])); }
+    else if (col === 'kategori' || col === 'subkategori') { const dlId = 'dl-f-' + col, setV = new Set(); [S.cur, 'produk'].forEach(sh => { const ci = C(sh, col); if (ci !== -1) (S.db[sh] || []).forEach(rowItem => rowItem[ci] && setV.add(rowItem[ci])); }); inp.setAttribute('list', dlId); bindDL(dlId, Array.from(setV)); }
+    else if (col === 'kontak') { inp.setAttribute('list', 'dl-fk'); bindDL('dl-fk', (S.db.kontak || []).map(k => ({ v: k[C('kontak','nama')] || k[0] || '', l: k[C('kontak','hp')] || '' }))); }
+    dom.fb.appendChild(inp); updateFormThumb(inp);
+  });
+  if (isTrx() && S.idx !== null && S.idx >= 0) {
+    const { raw, disc, cogs, pot } = calcItems(S.cur, r[0]), net = Math.max(0, raw - disc - N(r[c.indexOf('diskon')])), pf = S.cur === 'penjualan' ? (net - cogs) : (pot - net);
+    dom.ft.insertAdjacentHTML('beforeend', `<div class="inf">total:${fmtNum(net)} profit:${fmtNum(pf)}</div>`);
+  }
+  addFooter('save-row', 'save'); addFooter('cancel', 'cancel');
+  if (fCols.some(k => /idproduk/i.test(k))) addFooter('scan', 'scan');
+  if (fCols.some(k => /foto/i.test(k))) ['cam','pic'].forEach(a => addFooter(a, a === 'cam' ? 'kamera' : 'file'));
+  if (fCols.some(k => /alamat|lokasi/i.test(k))) { addFooter('gps', 'gps'); if (/(-?\d+\.\d+),\s*(-?\d+\.\d+)/.test(fCols.map(col => r[c.indexOf(col)] || '').join(' '))) { addFooter('navigasi', 'navigasi'); addFooter('v-map-row', 'map'); } }
+  if (S.cur === 'produk' && S.idx !== null && S.idx >= 0) ['jual-prod','beli-prod','ecer-prod'].forEach(a => addFooter(a, a.split('-')[0]));
+  if (['produk_jual','produk_beli','ecer'].includes(S.cur) && r.length) { const pid = r[c.indexOf('idproduk')]; if (pid) { const px = (S.db.produk || []).findIndex(p => S2(p[C('produk','idproduk')] ?? p[0]) === S2(pid)); if (px !== -1) S.prodIdx = px; } }
+  if (S.prodIdx !== null) addFooter('edit-prod', 'edit produk');
+  if (isTrx() && S.idx !== null && S.idx >= 0) { if (!isDraft) addFooter('revisi', 'revisi'); addFooter('pay-pas', 'pas'); if (!isDraft) addFooter('trx-rincian', childOf(S.cur)); if (S.cur === 'penjualan') addFooter('show-nota', 'nota'); addFooter('cicil', 'cicil'); if (!isDraft) addFooter('print', 'print'); }
+  if (S.idx !== null && S.idx >= 0) { if (!isDraft) addFooter('dup-row', 'dup'); addFooter('del-row', S.conf === 'del' ? 'sure?' : 'del'); }
+};
+const renderList = isBulk => {
+  const c = cols(), vCols = vis(), rows = S.db[S.cur] || [], matched = queryRows(), vIdxs = c.map((col, i) => vCols.includes(col) ? i : -1).filter(i => i !== -1), effIdxs = vIdxs.length ? vIdxs : [0], imI = c.indexOf('foto_url'), lim = Math.min(S.page * 25, matched.length);
+  for (let m = 0; m < lim; m++) {
+    const trg = matched[m], r = rows[trg] || [], el = document.createElement('div'); el.dataset.idx = trg;
+    if (isBulk) { el.contentEditable = 'plaintext-only'; if (!el.isContentEditable) el.contentEditable = 'true'; el.textContent = r.join('|'); }
+    else {
+      if (S.grid && imI !== -1 && r[imI]) { const im = document.createElement('img'); im.src = r[imI]; im.loading = 'lazy'; im.onerror = () => im.remove(); el.appendChild(im); }
+      el.appendChild(document.createTextNode(effIdxs.map(i => { const v = r[i]; if (!v) return ''; return c[i] === 'konten' ? (String(v).replace(/\s+/g, ' ').slice(0, 50) + '...') : v; }).filter(Boolean).join(' ') || '-'));
+    }
+    dom.ls.appendChild(el);
+  }
+  if (isBulk) { addFooter('save-bulk', 'save'); addFooter('cancel', 'cancel'); }
+  else {
+    const pType = parentOf(S.cur), op = pType ? getOpenTrx(pType) : null;
+    if (pType && op) { S.parent = { type: pType, id: op.id, open: true }; const { raw, disc } = calcItems(pType, op.id); addFooter('clear-items', S.conf === 'clear-items' ? 'sure?' : 'clear'); addFooter('add', '+item'); addFooter('v-selesai', `${pType} (${fmtNum(raw - disc)})`); if (pType === 'penjualan') addFooter('show-nota', 'nota'); }
+    renderNavFooters();
+  }
+  if (lim < matched.length) dom.tl.insertAdjacentHTML('beforeend', '<button data-a="more">more</button>');
+};
+const renderNota = () => { dom.tape.textContent = S.receiptRaw; addFooter('rawbt', 'rawbt'); addFooter('print', 'print'); addFooter('copy-nota', 'copy'); addFooter('cancel', 'cancel'); };
+let drawMapCanvas = null;
+const renderMap = () => {
+  if (!dom.mb) return; dom.mb.innerHTML = '';
+  const qW = S2(dom.q.value).split(/\s+/).filter(Boolean), targetSh = S.curMap === 'penjualan' ? 'penjualan' : 'kontak', rows = S.db[targetSh] || [], c = S.cols[targetSh] || [];
+  const lkI = c.indexOf('lokasi'), alI = c.indexOf('alamat'), nmI = c.indexOf(targetSh === 'penjualan' ? 'idjual' : 'nama');
+  let locItems = [];
+  rows.forEach((r, idx) => {
+    if (qW.length && !qW.every(w => r.join(' ').toLowerCase().includes(w))) return;
+    const m = ((lkI !== -1 ? r[lkI] : '') || (alI !== -1 ? r[alI] : '')).trim().match(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/);
+    if (m) { const lat = N(m[1]), lng = N(m[3]); locItems.push({ sh: targetSh, idx, title: (nmI !== -1 ? r[nmI] : r[0]) || (targetSh + ' ' + (idx + 1)), loc: m[0], lat, lng, distVal: S.myLoc ? rawDistKm(S.myLoc.lat, S.myLoc.lng, lat, lng) : 0 }); }
+  });
+  if (S.sort === 'near' && S.myLoc) locItems.sort((a, b) => a.distVal - b.distVal);
+  const lim = parseInt(S.mapLimit, 10) || 20; if (locItems.length > lim) locItems = locItems.slice(0, lim);
+  if (!locItems.length) { dom.mb.innerHTML = `<div style="padding:10px 0">tidak ada koordinat (${targetSh})</div>`; addFooter('cancel', 'kembali'); return; }
+  const actItem = locItems.find(it => it.loc === S.mapLoc) || locItems[0], dStr = S.myLoc ? distKm(S.myLoc.lat, S.myLoc.lng, actItem.lat, actItem.lng) : '';
+  dom.mb.innerHTML = `<div class="r"><button data-a="map-zin" class="w28">+</button><button data-a="map-zout" class="w28">-</button><button data-a="map-fit" class="w36">fit</button><input id="map-lim" type="number" min="1" max="100" value="${lim}" class="w36"><button data-a="gps-map" class="wa">gps</button><span class="m-title"><b>${actItem.title}</b> ${dStr?'('+dStr+')':''}</span></div><canvas id="map-cv" class="m-cv"></canvas>`;
+  const cv = $('map-cv'); if (!cv) return; const ctx = cv.getContext('2d');
+  const draw = () => {
+    const W = cv.width = cv.clientWidth || 300, H = cv.height = 320; ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    const pts = locItems.slice(); if (S.myLoc) pts.push(S.myLoc);
+    const minLa = Math.min(...pts.map(p => p.lat)), maxLa = Math.max(...pts.map(p => p.lat)), minLo = Math.min(...pts.map(p => p.lng)), maxLo = Math.max(...pts.map(p => p.lng));
+    const sc = Math.min((W - 60) / Math.max(0.002, (maxLo - minLo) * 1.3), (H - 60) / Math.max(0.002, (maxLa - minLa) * 1.3)) * (S.mapZoom || 1);
+    const cx = (W / 2) + (S.mapPan?.x || 0), cy = (H / 2) + (S.mapPan?.y || 0), toX = lng => cx + (lng - (minLo + maxLo) / 2) * sc, toY = lat => cy - (lat - (minLa + maxLa) / 2) * sc;
+    locItems.forEach(it => { it.x = toX(it.lng); it.y = toY(it.lat); ctx.fillStyle = '#000'; ctx.beginPath(); ctx.arc(it.x, it.y, 4, 0, Math.PI * 2); ctx.fill(); ctx.fillText(it.title.slice(0, 14), it.x + 6, it.y - 4); });
+    if (S.myLoc) { const mx = toX(S.myLoc.lng), my = toY(S.myLoc.lat); ctx.strokeStyle = '#000'; ctx.beginPath(); ctx.arc(mx, my, 5, 0, Math.PI * 2); ctx.moveTo(mx - 8, my); ctx.lineTo(mx + 8, my); ctx.moveTo(mx, my - 8); ctx.lineTo(mx, my + 8); ctx.stroke(); ctx.fillText('kamu', mx + 7, my - 5); }
+  };
+  drawMapCanvas = draw; draw();
+  let isD = false, didM = false, dS = { x: 0, y: 0 }, dwP = { x: 0, y: 0 };
+  cv.onpointerdown = ev => { try { cv.setPointerCapture(ev.pointerId); } catch (e) {} isD = true; didM = false; dS = { x: ev.clientX - (S.mapPan?.x || 0), y: ev.clientY - (S.mapPan?.y || 0) }; dwP = { x: ev.clientX, y: ev.clientY }; };
+  cv.onpointermove = ev => { if (!isD) return; if (Math.hypot(ev.clientX - dwP.x, ev.clientY - dwP.y) > 4) didM = true; S.mapPan.x = ev.clientX - dS.x; S.mapPan.y = ev.clientY - dS.y; draw(); };
+  const endD = ev => {
+    if (!isD) return; isD = false; try { cv.releasePointerCapture(ev.pointerId); } catch (e) {}
+    if (!didM) { const rc = cv.getBoundingClientRect(), cxP = ev.clientX - rc.left, cyP = ev.clientY - rc.top; let near = null, minD = 24; locItems.forEach(it => { const d = Math.hypot(it.x - cxP, it.y - cyP); if (d < minD) { minD = d; near = it; } }); if (near) { S.cur = near.sh; S.idx = near.idx; S.v = 'form'; render(); } }
+  };
+  cv.onpointerup = endD; cv.onpointercancel = endD; addFooter('v-dash', 'dashboard'); addFooter('cancel', 'kembali');
+};
+const persist = () => { try { localStorage.setItem(STORE_KEY, JSON.stringify({ sid: S.sid, appurl: S.appurl, d1url: S.d1url, cur: S.cur, u: S.u, store: S.store, shs: S.shs, cols: S.cols, vis: S.vis, fvis: S.fvis, db: S.db, parent: S.parent, grid: S.grid, df: S.df, mapLimit: S.mapLimit, curMap: S.curMap })); } catch (e) {} };
+const render = () => {
+  dom.act.value = ''; dom.fb.innerHTML = ''; dom.ft.innerHTML = ''; dom.db.innerHTML = ''; dom.ls.innerHTML = ''; dom.tl.innerHTML = ''; if (dom.mb) dom.mb.innerHTML = '';
+  if (!S.u) { document.body.dataset.m = 'form'; renderForm(); return; }
+  const isF = ['toko','conn','schema','bulksheet','cms_detail'].includes(S.v) || S.idx !== null;
+  const mode = S.v === 'dash' ? 'dash' : (S.v === 'nota' ? 'nota' : (S.v === 'map' ? 'map' : (isF ? 'form' : (S.v === 'edit' ? 'edit' : 'list'))));
+  document.body.dataset.m = mode; document.body.dataset.v = S.grid ? 'grid' : 'list'; document.body.dataset.noadd = NO_ADD.includes(S.cur) ? '1' : '0';
+  renderChrome();
+  if (mode === 'dash') renderDash(); else if (mode === 'nota') renderNota(); else if (mode === 'map') renderMap(); else if (mode === 'form') renderForm(); else if (mode === 'edit') renderList(true); else renderList(false);
+};
+const actions = {
+  closemsg: () => { S.conf = null; msg(''); },
+  login: () => {
+    const u = (dom.fb.querySelector('[data-f="user"]')?.value || '').trim(), p = (dom.fb.querySelector('[data-f="pass"]')?.value || '').trim();
+    if (!u) return msg('user required'); const fnd = (S.db.users || []).find(r => S2(r[0]) === S2(u));
+    if (fnd) { if (fnd[1] && fnd[1] !== p) return msg('wrong pass'); S.u = fnd[0]; }
+    else if (!S.db.users?.length && u === 'admin') { S.db.users = [['admin', p || 'admin', 'admin']]; S.u = 'admin'; }
+    else return msg('user not found');
+    persist(); S.v = 'dash'; msg(S.u); render();
+  },
+  reg: () => {
+    const u = (dom.fb.querySelector('[data-f="user"]')?.value || '').trim(), p = (dom.fb.querySelector('[data-f="pass"]')?.value || '').trim();
+    if (!u) return msg('user required'); if ((S.db.users || []).some(r => S2(r[0]) === S2(u))) return msg('user exists');
+    (S.db.users = S.db.users || []).push([u, p, 'user']); S.u = u; persist(); S.v = 'dash'; msg(S.u); render();
+  },
+  bypass: () => { S.u = 'admin'; if (!(S.db.users || []).some(r => r[0] === 'admin')) (S.db.users = S.db.users || []).push(['admin','admin','admin']); persist(); S.v = 'dash'; msg('admin'); render(); },
+  menu: () => { if (document.body.dataset.m === 'menu') { dom.q.value = ''; render(); } else { document.body.dataset.m = 'menu'; dom.q.value = ''; Array.from(dom.sb.children).forEach(b => b.hidden = false); } },
+  clr: () => { dom.q.value = ''; if (document.body.dataset.m === 'menu') Array.from(dom.sb.children).forEach(x => x.hidden = false); else { S.page = 1; render(); } dom.q.focus(); },
+  'df-today': () => { const t = today(); S.df.from = t; S.df.to = t; persist(); render(); },
+  'df-clear': () => { S.df = { u: '', from: '', to: '', kat: '' }; persist(); render(); },
+  'v-dash': () => { S.v = 'dash'; S.idx = null; S.conf = null; render(); },
+  'v-map-kontak': () => { S.curMap = 'kontak'; S.v = 'map'; S.idx = null; S.conf = null; render(); },
+  'v-map-jual': () => { S.curMap = 'penjualan'; S.v = 'map'; S.idx = null; S.conf = null; render(); },
+  'map-zin': () => { S.mapZoom = Math.min(10, (S.mapZoom || 1) * 1.35); if (drawMapCanvas) drawMapCanvas(); else renderMap(); },
+  'map-zout': () => { S.mapZoom = Math.max(0.2, (S.mapZoom || 1) / 1.35); if (drawMapCanvas) drawMapCanvas(); else renderMap(); },
+  'map-fit': () => { S.mapZoom = 1; S.mapPan = { x: 0, y: 0 }; if (drawMapCanvas) drawMapCanvas(); else renderMap(); },
+  'gps-map': () => { if (navigator.geolocation) { msg('gps...'); navigator.geolocation.getCurrentPosition(p => { S.myLoc = { lat: p.coords.latitude, lng: p.coords.longitude }; msg(`posisi ok (${p.coords.latitude.toFixed(4)},${p.coords.longitude.toFixed(4)})`); render(); }, () => msg('gps err'), { enableHighAccuracy: true, timeout: 6000 }); } else msg('no gps'); },
+  'v-map-row': () => { const loc = (S.db[S.cur]?.[S.idx] || []).find(v => /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/.test(String(v || '').trim())); if (loc) { S.curMap = S.cur === 'penjualan' ? 'penjualan' : 'kontak'; S.mapLoc = loc.trim(); S.v = 'map'; render(); } else msg('tidak ada koordinat'); },
+  'v-toko': () => { S.v = 'toko'; S.idx = null; S.conf = null; render(); },
+  'v-conn': () => { S.v = 'conn'; S.idx = null; S.conf = null; render(); },
+  'v-kas': () => { if (!S.shs.includes('kas')) S.shs.push('kas'); S.cur = 'kas'; S.idx = -1; S.v = 'form'; render(); },
+  'v-shop': () => { S.cur = 'produk'; S.grid = true; S.v = 'list'; S.idx = null; S.readyOnly = false; render(); },
+  'v-jual': () => { const op = getOpenTrx('penjualan'); if (op) S.parent = { type: 'penjualan', id: op.id, open: true }; S.cur = 'produk_jual'; S.grid = false; S.v = 'list'; S.idx = null; render(); },
+  'v-beli': () => { const op = getOpenTrx('pembelian'); if (op) S.parent = { type: 'pembelian', id: op.id, open: true }; S.cur = 'produk_beli'; S.grid = false; S.v = 'list'; S.idx = null; render(); },
+  'v-selesai': () => { if (!S.parent) return; const pType = S.parent.type, fi = (S.db[pType] || []).findIndex(r => S2(r[0]) === S2(S.parent.id)); S.cur = pType; S.idx = fi !== -1 ? fi : null; S.v = 'form'; render(); },
+  'clear-items': () => {
+    if (S.conf !== 'clear-items') { S.conf = 'clear-items'; msg('clear items? tap lagi'); return render(); }
+    if (!S.parent) return; const ch = childOf(S.parent.type); if (!ch) return; const fkI = C(ch, fkCol(ch));
+    if (fkI !== -1) { const pid = S2(S.parent.id); (S.db[ch] || []).filter(r => S2(r[fkI]) === pid).forEach(r => syncStockDelta(ch, r, null)); S.db[ch] = (S.db[ch] || []).filter(r => S2(r[fkI]) !== pid); persist(); syncTrx(S.parent.type, S.parent.id); }
+    S.conf = null; msg('ok'); render();
+  },
+  cancel: () => { if (S.prodIdx !== null) { S.cur = 'produk'; S.grid = true; S.v = 'list'; S.idx = null; S.prodIdx = null; S.prefill = null; S.readyOnly = false; return render(); } S.v = 'list'; S.idx = null; S.prefill = null; S.conf = null; S.prodIdx = null; S.readyOnly = false; render(); },
+  'edit-cms': () => { S.v = 'form'; render(); },
+  nav: b => { S.cur = b.dataset.s; S.v = 'list'; S.idx = null; S.page = 1; S.conf = null; S.readyOnly = b.dataset.slice === 'ready'; render(); },
+  add: () => { if (NO_ADD.includes(S.cur)) return; S.idx = -1; S.v = 'form'; render(); },
+  'edit-prod': () => { if (S.prodIdx !== null) { S.cur = 'produk'; S.idx = S.prodIdx; S.prodIdx = null; S.prefill = null; S.v = 'form'; render(); } },
+  'jual-prod': () => { if (S.idx === null || S.idx < 0) return; const p = S.db.produk[S.idx] || []; if (!S.shs.includes('produk_jual')) S.shs.push('produk_jual'); S.cur = 'produk_jual'; S.prefill = { idproduk: p[0], namaproduk: p[3], hargabeli: p[4], hargajual: p[5], qty: '1', diskon: '', catatan: '' }; S.prodIdx = S.idx; S.idx = -1; S.v = 'form'; render(); },
+  'beli-prod': () => { if (S.idx === null || S.idx < 0) return; const p = S.db.produk[S.idx] || []; if (!S.shs.includes('produk_beli')) S.shs.push('produk_beli'); S.cur = 'produk_beli'; S.prefill = { idproduk: p[0], namaproduk: p[3], hargabeli: p[4], hargajual: p[5], qty: '1' }; S.prodIdx = S.idx; S.idx = -1; S.v = 'form'; render(); },
+  'ecer-prod': () => { if (S.idx === null || S.idx < 0) return; const p = S.db.produk[S.idx] || []; if (!S.shs.includes('ecer')) S.shs.push('ecer'); S.cur = 'ecer'; S.prefill = { idproduk: p[0], namaproduk: p[3], hargabeli: p[4], hargajual: p[5], qty: '1', diskon: '', catatan: '' }; S.prodIdx = S.idx; S.idx = -1; S.v = 'form'; render(); },
+  'save-bulksheet': () => {
+    const val = dom.fb.querySelector('textarea')?.value || '', updated = [];
+    val.split(/\r?\n/).filter(Boolean).forEach(l => { const [rawN, ...rest] = l.split(':'), n = S2(rawN); if (!n) return; if (!updated.includes(n)) updated.push(n); S.db[n] = S.db[n] || []; const cl = rest.join(':').split(',').map(S2).filter(Boolean); S.cols[n] = cl.length ? cl : (S.cols[n] || ['id','col1']); if (!S.vis[n]?.length) S.vis[n] = S.cols[n].slice(0, 2); });
+    if (!updated.length) return msg('min 1 sheet');
+    S.shs.forEach(o => { if (!updated.includes(o)) { delete S.db[o]; delete S.cols[o]; delete S.vis[o]; delete S.fvis?.[o]; } });
+    S.shs = updated; if (!S.shs.includes(S.cur)) S.cur = S.shs[0]; persist(); S.v = 'list'; msg('ok'); render();
+  },
+  'save-row': () => {
+    const c = cols(), oldR = (S.idx >= 0 && S.db[S.cur][S.idx]) ? S.db[S.cur][S.idx].slice() : null, row = oldR ? oldR.slice() : new Array(c.length).fill('');
+    while (row.length < c.length) row.push('');
+    dom.fb.querySelectorAll('[data-col]').forEach(inp => { const ci = c.indexOf(inp.dataset.col); if (ci !== -1) row[ci] = inp.value.trim(); });
+    const pType = parentOf(S.cur);
+    if (pType && S.idx === -1) {
+      if (!S.parent || S.parent.type !== pType) S.parent = getOpenTrx(pType) || { type: pType, id: genId(), open: true };
+      const pCols = S.cols[pType] || [];
+      if (!(S.db[pType] || []).some(r => S2(r[0]) === S2(S.parent.id))) {
+        const newP = new Array(pCols.length).fill(''); newP[0] = S.parent.id;
+        pCols.forEach((col, i) => { if (/date|tanggal/i.test(col)) newP[i] = today(); else if (col === 'user') newP[i] = S.u || 'admin'; else if (col === 'status') newP[i] = 'draft'; });
+        (S.db[pType] = S.db[pType] || []).push(newP);
+      }
+      const fkI = c.indexOf(fkCol(S.cur)); if (fkI !== -1) row[fkI] = S.parent.id;
+    }
+    if (!row[0]) row[0] = genId();
+    if (isTrx()) {
+      const sI = c.indexOf('status'), bI = c.indexOf('bayar'), dI = c.indexOf('diskon'), kI = c.indexOf('kontak'), { raw, disc } = calcItems(S.cur, row[0]), net = Math.max(0, raw - disc - (dI !== -1 ? N(row[dI]) : 0)), paid = bI !== -1 ? N(row[bI]) : 0;
+      let cicil = 0; if (S.cur === 'penjualan') { const ci = C('cicil','idjual'), cj = C('cicil','jumlah'); (S.db.cicil || []).forEach(cr => { if (ci !== -1 && S2(cr[ci]) === S2(row[0])) cicil += N(cr[cj]); }); }
+      if ((S2(row[sI]) === 'piutang' || (net > 0 && paid + cicil < net)) && kI !== -1 && !row[kI]) return msg('piutang wajib kontak');
+    }
+    if (S.idx === -1) { (S.db[S.cur] = S.db[S.cur] || []).push(row); syncStockDelta(S.cur, null, row); }
+    else if (S.idx >= 0) { S.db[S.cur][S.idx] = row; syncStockDelta(S.cur, oldR, row); }
+    persist(); if (pType && S.parent?.id) syncTrx(pType, S.parent.id); if (isTrx() && row[0]) syncTrx(S.cur, row[0]);
+    S.idx = null; S.v = 'list'; S.prefill = null; S.conf = null; S.prodIdx = null; msg('ok'); render();
+  },
+  'del-row': () => {
+    if (S.conf !== 'del') { S.conf = 'del'; return render(); }
+    if (S.idx == null || S.idx < 0) return;
+    const pType = parentOf(S.cur), pid = pType ? (S.db[S.cur][S.idx]?.[cols().indexOf(fkCol(S.cur))] || S.parent?.id) : null, id = S.db[S.cur][S.idx]?.[0], rm = S.db[S.cur].splice(S.idx, 1)[0];
+    syncStockDelta(S.cur, rm, null);
+    if (isTrx() && id) { const ch = childOf(S.cur), fkI = C(ch, fkCol(ch)); if (fkI !== -1) { (S.db[ch] || []).filter(r => S2(r[fkI]) === S2(id)).forEach(r => syncStockDelta(ch, r, null)); S.db[ch] = (S.db[ch] || []).filter(r => S2(r[fkI]) !== S2(id)); } }
+    persist(); if (pType && pid) syncTrx(pType, pid); S.idx = null; S.v = 'list'; S.conf = null; msg('ok'); render();
+  },
+  'dup-row': () => { if (S.idx == null || S.idx < 0) return; const row = (S.db[S.cur][S.idx] || []).slice(); row[0] = genId(); S.db[S.cur].push(row); persist(); S.idx = S.db[S.cur].length - 1; msg('ok'); render(); },
+  'pay-pas': () => { if (S.idx == null || S.idx < 0) return; const row = S.db[S.cur][S.idx], bI = cols().indexOf('bayar'); if (bI === -1) return; const net = Math.max(0, calcItems(S.cur, row[0]).raw - calcItems(S.cur, row[0]).disc - N(row[cols().indexOf('diskon')])); row[bI] = String(net); const sI = cols().indexOf('status'); if (sI !== -1) row[sI] = net > 0 ? 'lunas' : 'draft'; persist(); msg('ok'); render(); },
+  revisi: () => { if (S.idx == null || S.idx < 0) return; const row = S.db[S.cur][S.idx], pid = row?.[0]; if (!pid) return; S.parent = { type: S.cur, id: pid, open: true }; const sI = cols().indexOf('status'); if (sI !== -1) { row[sI] = 'revisi'; persist(); } S.cur = childOf(S.cur); S.idx = null; S.v = 'list'; msg('revisi ' + pid); render(); },
+  cicil: () => { if (S.idx == null || S.idx < 0) return; const pid = S.db[S.cur][S.idx]?.[0]; if (!pid) return; if (!S.shs.includes('cicil')) S.shs.push('cicil'); S.cur = 'cicil'; S.prefill = { idjual: pid, kontak: S.db.penjualan?.[S.idx]?.[C('penjualan','kontak')] || '', date: today(), user: S.u || 'admin' }; S.idx = -1; S.v = 'form'; render(); },
+  'trx-rincian': () => { if (S.idx == null || S.idx < 0) return; const pid = S.db[S.cur][S.idx]?.[0]; if (!pid) return; S.parent = { type: S.cur, id: pid, open: true }; S.cur = childOf(S.cur); S.idx = null; S.v = 'list'; render(); },
+  'show-nota': () => { const pid = (S.cur === 'penjualan' && S.idx !== null && S.idx >= 0) ? S.db.penjualan[S.idx]?.[0] : S.parent?.type === 'penjualan' ? S.parent.id : S.cur === 'penjualan' ? S.db.penjualan?.[0]?.[0] : null; if (!pid) return msg('pilih trx'); S.receiptRaw = formatNota(pid); S.v = 'nota'; render(); },
+  rawbt: () => { if (!S.receiptRaw) return msg('empty'); try { const u = encodeURIComponent(S.receiptRaw); window.location.href = /Android/i.test(navigator.userAgent) ? `intent:#Intent;scheme=rawbt;package=ru.a402d.rawbtprinter;S.data=${u};end;` : `rawbt:data:text/plain;charset=utf-8,${u}`; msg('rawbt sent'); } catch (e) { msg('err'); } },
+  print: () => window.print(),
+  'copy-nota': () => { const el = document.createElement('textarea'); el.value = S.receiptRaw; document.body.appendChild(el); el.select(); document.execCommand('copy'); el.remove(); msg('copied'); },
+  'save-store': () => { dom.fb.querySelectorAll('[data-cfg]').forEach(i => { S.store[i.dataset.cfg] = i.value.trim(); }); persist(); S.v = 'list'; msg('ok'); render(); },
+  'save-conn': () => { const inps = dom.fb.querySelectorAll('textarea'); S.sid = (inps[0]?.value || '').trim(); S.appurl = (inps[1]?.value || '').trim(); S.d1url = (inps[2]?.value || '').trim(); persist(); S.v = 'list'; msg('ok'); render(); },
+  'save-schema': () => {
+    const cInp = dom.fb.querySelector('[data-f="cols"]'), vInp = dom.fb.querySelector('[data-f="vis"]'), fInp = dom.fb.querySelector('[data-f="form"]');
+    const nc = (cInp?.value || '').split(',').map(S2).filter(Boolean);
+    if (nc.length) { S.cols[S.cur] = nc; const nv = (vInp?.value || '').split(',').map(S2).filter(x => nc.includes(x)); S.vis[S.cur] = nv.length ? nv : nc.slice(0, 2); const nf = (fInp?.value || '').split(',').map(S2).filter(x => nc.includes(x)); S.fvis = S.fvis || {}; S.fvis[S.cur] = nf.length ? nf : nc.slice(); (S.db[S.cur] || []).forEach(r => { while (r.length < nc.length) r.push(''); r.length = nc.length; }); persist(); }
+    S.v = 'list'; render();
+  },
+  'save-bulk': () => { const cLen = cols().length; dom.ls.querySelectorAll('[data-idx]').forEach(div => { const idx = parseInt(div.dataset.idx, 10); if (isNaN(idx) || !S.db[S.cur][idx]) return; const parts = div.textContent.split('|').map(s => s.trim()); while (parts.length < cLen) parts.push(''); S.db[S.cur][idx] = parts.slice(0, cLen); }); persist(); S.v = 'list'; msg('ok'); render(); },
+  push: () => dl(JSON.stringify({ store: S.store, shs: S.shs, cols: S.cols, vis: S.vis, fvis: S.fvis, db: S.db }), `apex_${Date.now()}.json`, 'application/json'),
+  pull: () => dom.fJson.click(),
+  backup: () => { persist(); const seed = 'const HARD = ' + JSON.stringify({ store: S.store, shs: S.shs, cols: S.cols, vis: S.vis, db: S.db }) + ';'; dl('<!doctype html>\n' + document.documentElement.outerHTML.replace(/\/\*SEED\*\/[\s\S]*?\/\*ENDSEED\*\//, () => '/*SEED*/\n' + seed + '\n/*ENDSEED*/'), 'apex_' + Date.now() + '.html', 'text/html;charset=utf-8'); },
+  grid: () => { S.grid = !S.grid; render(); }, dir: () => { S.dir = -S.dir; S.page = 1; render(); }, more: () => { S.page++; render(); }, logout: () => { S.u = ''; S.readyOnly = false; persist(); msg('logout'); render(); },
+  cam: () => dom.fCam.click(), pic: () => dom.fImg.click(),
+  scan: async () => {
+    if (!('BarcodeDetector' in window)) return msg('BarcodeDetector tdk didukung');
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+      let m = $('bc-mod');
+      if (!m) {
+        document.body.insertAdjacentHTML('beforeend', '<div id="bc-mod" class="z-mod"><div class="z-bar"><button id="bc-cls" class="w36">x</button><span class="g"></span><span>scan barcode</span></div><div class="z-stg"><video id="bc-vid" autoplay playsinline style="width:100%;height:100%;object-fit:cover"></video></div></div>');
+        m = $('bc-mod'); m.querySelector('#bc-cls').onclick = () => { m.hidden = true; m._stop?.(); };
+      }
+      m.hidden = false; const vid = m.querySelector('#bc-vid'), det = new BarcodeDetector();
+      vid.srcObject = stream; let run = true;
+      m._stop = () => { run = false; stream.getTracks().forEach(t => t.stop()); };
+      const loop = async () => {
+        if (!run) return;
+        try {
+          const bcs = await det.detect(vid);
+          if (bcs.length) {
+            const code = bcs[0].rawValue; m.hidden = true; m._stop();
+            const inp = dom.fb.querySelector('[data-col="idproduk"]') || dom.fb.querySelector('[data-col="namaproduk"]');
+            if (document.body.dataset.m === 'form' && inp) { inp.value = code; inp.dispatchEvent(new Event('input', { bubbles: true })); }
+            else { dom.q.value = code; actions.q(dom.q); }
+            msg('bc: ' + code); return;
+          }
+        } catch (err) {}
+        if (run) requestAnimationFrame(loop);
+      };
+      vid.onloadedmetadata = () => loop();
+    } catch (e) { msg('kamera gagal'); }
+  },
+  navigasi: () => { const inp = Array.from(dom.fb.querySelectorAll('[data-col]')).find(i => /alamat|lokasi/i.test(i.dataset.col)), loc = (inp?.value || '').trim(); if (!loc) return msg('koordinat kosong'); window.location.href = 'geo:' + loc + '?q=' + encodeURIComponent(loc); },
+  gps: () => { const inp = Array.from(dom.fb.querySelectorAll('[data-col]')).find(i => /alamat|lokasi/i.test(i.dataset.col)); if (!inp) return msg('kolom lokasi/alamat tidak ada'); if (navigator.geolocation) { msg('gps...'); navigator.geolocation.getCurrentPosition(p => { const loc = p.coords.latitude.toFixed(6) + ',' + p.coords.longitude.toFixed(6); inp.value = loc; msg(loc); }, () => msg('gps err'), { enableHighAccuracy: true, timeout: 5000 }); } else msg('no gps'); },
+  'sh-sel': el => { S.cur = el.value; S.idx = null; S.v = 'list'; S.page = 1; S.parent = null; S.readyOnly = false; render(); },
+  'st-sel': el => { S.sort = el.value === 'near' ? 'near' : (parseInt(el.value, 10) || 0); S.page = 1; render(); },
+  'act-sel': el => {
+    const a = el.value; el.value = ''; if (!a) return;
+    if (a === 'edit') { S.v = S.v === 'edit' ? 'list' : 'edit'; return render(); }
+    if (['bulksheet','schema'].includes(a)) { S.v = a; return render(); }
+    if (a === 'imp') return dom.f.click();
+    if (a === 'tsv') return dl([cols().join('\t')].concat((S.db[S.cur] || []).map(r => r.join('\t'))).join('\r\n'), `${S.cur}_${Date.now()}.tsv`, 'text/tab-separated-values');
+    if (a === 'clear') { if (S.conf !== 'clear') { S.conf = 'clear'; msg(`clear ${S.cur}? pilih lagi`); return; } S.db[S.cur] = []; S.conf = null; persist(); msg('ok'); render(); }
+  },
+  q: el => { if (document.body.dataset.m === 'menu') { const qm = S2(el.value); Array.from(dom.sb.children).forEach(b => b.hidden = Boolean(qm && !b.textContent.toLowerCase().includes(qm))); return; } S.page = 1; render(); },
+  f: el => {
+    const file = el.files?.[0]; if (!file) return; el.value = ''; const rd = new FileReader();
+    rd.onload = e => { const lines = (e.target.result || '').split(/\r?\n/).filter(Boolean); if (!lines.length) return msg('empty'); const c = cols(); S.db[S.cur] = lines.slice(1).map(l => { const r = l.split('\t'); while (r.length < c.length) r.push(''); return r.slice(0, c.length); }); persist(); msg('ok'); render(); };
+    rd.readAsText(file);
+  }
+};
+dom.fJson.onchange = e => {
+  const file = e.target.files?.[0]; if (!file) return; e.target.value = ''; const rd = new FileReader();
+  rd.onload = ev => {
+    try {
+      const d = JSON.parse(ev.target.result);
+      if (d && typeof d === 'object') {
+        if (d.store) S.store = d.store; if (d.shs) S.shs = d.shs; if (d.cols) S.cols = d.cols; if (d.vis) S.vis = d.vis; if (d.fvis) S.fvis = d.fvis; if (d.db) S.db = d.db;
+        persist(); msg('pull ok'); render();
+      }
+    } catch (err) { msg('json err'); }
+  };
+  rd.readAsText(file);
+};
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-a]');
+  if (b) { if (!['del-row','clear-items','act-sel'].includes(b.dataset.a) && S.conf) { S.conf = null; msg(''); } return actions[b.dataset.a]?.(b, e); }
+  const r = e.target.closest('#list>[data-idx]');
+  if (r && S.v === 'list' && S.idx === null) {
+    const idx = parseInt(r.dataset.idx, 10);
+    if (S.cur === 'cms') { S.idx = idx; S.v = 'cms_detail'; return render(); }
+    if (S.cur === 'produk') {
+      const p = S.db.produk[idx] || [], isBeli = S.parent?.type === 'pembelian', pType = isBeli ? 'pembelian' : 'penjualan';
+      S.parent = getOpenTrx(pType) || { type: pType, id: genId(), open: true }; S.cur = isBeli ? 'produk_beli' : 'produk_jual';
+      S.prefill = { idproduk: p[0], namaproduk: p[3], hargabeli: p[4], hargajual: p[5], qty: '1', diskon: '', catatan: '' }; S.prodIdx = idx; S.idx = -1; S.v = 'form'; return render();
+    }
+    if (isTrx()) { const pid = S.db[S.cur]?.[idx]?.[0]; if (pid) S.parent = { type: S.cur, id: pid }; }
+    S.idx = idx; S.v = 'form'; render();
+  }
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'map-lim') { S.mapLimit = e.target.value; persist(); render(); $('map-lim')?.focus(); return; }
+  if (e.target.dataset.df) { const k = e.target.dataset.df; S.df[k] = e.target.value; persist(); const pos = e.target.selectionStart; render(); const nx = dom.db.querySelector(`[data-df="${k}"]`); if (nx) { nx.focus(); if (typeof pos === 'number') try { nx.setSelectionRange(pos, pos); } catch (err) {} } return; }
+  if (e.target.dataset.a === 'q') actions.q(e.target);
+  if (e.target.dataset.col) updateFormThumb(e.target);
+  if (['idproduk','namaproduk'].includes(e.target.dataset.col) && S.cur !== 'produk') {
+    const q = S2(e.target.value); if (!q) return;
+    const pCols = S.cols.produk || [], pIdI = pCols.indexOf('idproduk'), pNmI = pCols.indexOf('namaproduk');
+    const fnd = (S.db.produk || []).find(r => S2(pIdI !== -1 ? r[pIdI] : r[0]) === q || (pNmI !== -1 && S2(r[pNmI]) === q));
+    if (fnd) dom.fb.querySelectorAll('[data-col]').forEach(inp => { const fi = pCols.indexOf(inp.dataset.col); if (fi !== -1) inp.value = fnd[fi]; });
+  }
+});
+document.addEventListener('change', e => {
+  const a = e.target.dataset.a; if (a && actions[a]) actions[a](e.target);
+  if (e.target === dom.fCam || e.target === dom.fImg) {
+    const file = e.target.files?.[0]; if (!file) return;
+    const inp = Array.from(dom.fb.querySelectorAll('[data-col]')).find(i => /foto/i.test(i.dataset.col)); if (!inp) return msg('kolom foto tidak ada');
+    const rd = new FileReader(); msg('memuat foto...');
+    rd.onload = ev => { inp.value = ev.target.result || ''; updateFormThumb(inp); msg('foto ok'); };
+    rd.onerror = () => msg('gagal baca file'); rd.readAsDataURL(file); e.target.value = '';
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && dom.fb.contains(e.target)) {
+    e.preventDefault();
+    if (!S.u) actions.login();
+    else if (S.v === 'bulksheet') actions['save-bulksheet']();
+    else if (S.v === 'toko') actions['save-store']();
+    else if (S.v === 'conn') actions['save-conn']();
+    else if (S.v === 'schema') actions['save-schema']();
+    else actions['save-row']();
+  } else if (e.key === 'Escape') actions.cancel();
+});
+try {
+  const d = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+  if (d && typeof d === 'object') {
+    ['store','shs','cols','vis','fvis','db','parent','cur','u','sid','appurl','d1url','df','mapLimit','curMap'].forEach(k => { if (d[k] !== undefined) S[k] = d[k]; });
+    S.grid = Boolean(d.grid);
+  }
+} catch (e) {}
+render();
+</script><script src="./script.js"></script></body></html>
